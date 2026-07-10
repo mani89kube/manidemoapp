@@ -6,7 +6,7 @@ metadata:
 spec:
   ingressClassName: azure-application-gateway
   rules:
-  - host: app1.4.192.79.66.nip.io
+  - host: app1.4.144.24.220.nip.io
     http:
       paths:
       - path: /
