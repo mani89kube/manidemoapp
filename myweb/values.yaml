@@ -65,7 +65,7 @@ ingress:
     # kubernetes.io/ingress.class: nginx
     # kubernetes.io/tls-acme: "true"
   hosts:
-    - host: app3.2.4.144.24.220.nip.io
+    - host: app3.4.144.24.220.nip.io
       paths:
         - path: /
           pathType: ImplementationSpecific
