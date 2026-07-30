@@ -1,0 +1,32 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  namespace: surya
+spec:
+  selector:
+    matchLabels:
+      app: frontend-deployment
+  template:
+    metadata:
+      labels:
+        app: frontend-deployment
+    spec:
+      containers:
+        - name: app
+          image: public.ecr.aws/aws-containers/retail-store-sample-checkout:1.2.1
+          envFrom:
+            - configMapRef:
+                name: cm6
+          ports:
+            - name: http
+              containerPort: 8080
+              protocol: TCP
+          volumeMounts:
+            - name: app-secret-volume
+              mountPath: /data
+              readOnly: true
+      volumes:
+        - name: app-secret-volume
+          secret:
+            secretName: app-secret
