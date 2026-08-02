@@ -2,8 +2,7 @@ apiVersion: kustomize.config.k8s.io/v1beta1
 kind: Kustomization
 resources:
   - ../../base
-  - ../../../common-config
-patches:
+ patches:
   - path: rollout-replica.yaml
   - path: hpa.yaml
   - path: service-loadbalancer.yaml
