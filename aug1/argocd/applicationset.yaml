@@ -1,0 +1,49 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: prod-applications
+  namespace: argocd
+
+spec:
+  goTemplate: true
+  goTemplateOptions:
+    - missingkey=error
+
+  generators:
+    - git:
+        repoURL: https://github.com/mani89kube/manidemoapp.git
+        revision: main
+
+        files:
+          - path: aug1/environments/prod/*-values.yaml
+
+  template:
+    metadata:
+      name: '{{ .path.basenameNormalized }}'
+
+    spec:
+      project: default
+
+      source:
+        repoURL: https://github.com/mani89kube/manidemoapp.git
+        targetRevision: main
+
+        # Common Helm chart location
+        path: aug1/shelm/helm-chart
+
+        helm:
+          valueFiles:
+            - '../../{{ .path.path }}'
+
+      destination:
+        server: https://kubernetes.default.svc
+        namespace: prod
+
+      syncPolicy:
+        automated:
+          prune: true
+          selfHeal: true
+
+        syncOptions:
+          - CreateNamespace=true
+
