@@ -135,7 +135,8 @@ startupProbe:
 
 livenessProbe:
   httpGet:
-    path: /healthz
+    path: /
+ #   path: /healthz
     port: http
   initialDelaySeconds: 10
   periodSeconds: 5
@@ -144,7 +145,8 @@ livenessProbe:
     
 readinessProbe:
   httpGet:
-    path: /ready
+#    path: /ready
+    path: /
     port: http
   initialDelaySeconds: 15
   periodSeconds: 10
