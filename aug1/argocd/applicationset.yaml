@@ -19,7 +19,7 @@ spec:
 
   template:
     metadata:
-      name: '{{ .path.basenameNormalized }}'
+      name: '{{ .path.basenameNormalized }}-prod'
 
     spec:
       project: default
