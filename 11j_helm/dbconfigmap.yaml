@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: db-cm
+  namespace: {{ .Values.namespace }}
+data:
+  myvalue: "Hello World"
+  DB_HOS: "127.0.0.1"
+  DB_PORT: "5432"
+  DB_NAME: "mani-db"
