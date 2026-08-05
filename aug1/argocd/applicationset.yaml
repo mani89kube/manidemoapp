@@ -31,8 +31,8 @@ spec:
 
         helm:
           valueFiles:
-            - '../../environments/prod/{{ .name }}/values.yaml'
-
+#            - '../../environments/prod/{{ .name }}/values.yaml'
+            - '../../environments/prod/{{ .name }}/{{ .name }}-values.yaml'
       destination:
         server: https://kubernetes.default.svc
         namespace: prod
