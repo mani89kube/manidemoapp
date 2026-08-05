@@ -19,8 +19,8 @@ spec:
 
   template:
     metadata:
-      name: '{{ .path.basenameNormalized }}-prod'
-
+#      name: '{{ .path.basenameNormalized }}-prod'
+      name: '{{ .path.filename | trimSuffix ".yaml" }}'
     spec:
       project: default
 
