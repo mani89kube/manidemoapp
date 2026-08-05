@@ -15,7 +15,7 @@ spec:
         revision: main
 
         files:
-          - path: aug1/environments/prod/*-values.yaml
+          - path: aug1/environments/prod/**/values.yaml
 
   template:
     metadata:
