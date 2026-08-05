@@ -10,31 +10,28 @@ spec:
     - missingkey=error
 
   generators:
-    - git:
-        repoURL: https://github.com/mani89kube/manidemoapp.git
-        revision: main
-
-        files:
-          - path: aug1/environments/prod/**/values.yaml
+    - list:
+        elements:
+          - name: app1
+          - name: app2
+          - name: app3
 
   template:
     metadata:
-      #  name: '{{ .path.basenameNormalized }}-prod'
-      name: '{{ .path.filename | trimSuffix ".yaml" }}'
+      name: '{{ .name }}-prod'
 
     spec:
       project: default
 
       source:
+        #  repoURL: https://github.com/mani89kube/manidemoapp.git
         repoURL: https://github.com/mani89kube/manidemoapp.git
         targetRevision: main
-
-        # Common Helm chart location
         path: aug1/shelm/helm-chart
 
         helm:
           valueFiles:
-            - '../../{{ .path.path }}'
+            - '../../environments/prod/{{ .name }}/values.yaml'
 
       destination:
         server: https://kubernetes.default.svc
@@ -47,4 +44,3 @@ spec:
 
         syncOptions:
           - CreateNamespace=true
-
